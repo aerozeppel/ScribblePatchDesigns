@@ -71,7 +71,16 @@ def scrape_etsy_playwright(shop_url):
                         seen.add(link);
                         
                         const imgEl = listing.querySelector('img');
-                        const img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
+                        let img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
+                        
+                        // Replace thumbnail size with full size
+                        if (img && img.includes('il_340x270')) {
+                            img = img.replace('il_340x270', 'il_1588xN');
+                        } else if (img && img.includes('il_170x135')) {
+                            img = img.replace('il_170x135', 'il_1588xN');
+                        } else if (img && img.includes('il_75x75')) {
+                            img = img.replace('il_75x75', 'il_1588xN');
+                        }
                         
                         let price = '0.00';
                         let symbol = '$';
