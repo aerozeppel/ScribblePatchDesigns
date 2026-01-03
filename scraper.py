@@ -62,7 +62,7 @@ def scrape_etsy_playwright(shop_url):
                         if (link.includes('?')) {
                             link = link.split('?')[0];
                         }
-                        link = link + '?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-1&dd=1';
+                        link = link + '?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-2&dd=1';
                         
                         if (!link) {
                             return;
