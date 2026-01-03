@@ -58,8 +58,12 @@ def scrape_etsy_playwright(shop_url):
                         const linkEl = listing.querySelector('a[href*="/listing/"]');
                         let link = linkEl ? linkEl.href : '';
                         
-                        // Keep the full URL with all parameters - they control page layout
-                        // (Previously we stripped them, but they're needed for similar products)
+                        // Remove logging_key parameter (session-specific tracking)
+                        if (link.includes('?')) {
+                            const url = new URL(link);
+                            url.searchParams.delete('logging_key');
+                            link = url.toString();
+                        }
                         
                         if (!link) {
                             return;
