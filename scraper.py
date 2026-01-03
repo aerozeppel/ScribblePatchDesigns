@@ -58,21 +58,11 @@ def scrape_etsy_playwright(shop_url):
                         const linkEl = listing.querySelector('a[href*="/listing/"]');
                         let link = linkEl ? linkEl.href : '';
                         
-                        // Clean up URL and add functional parameters in specific order
-                        const url = new URL(link);
-                        
-                        // Get ref parameter and item number
-                        const refParam = url.searchParams.get('ref');
-                        let itemNum = '1';
-                        if (refParam && refParam.startsWith('shop_home_active_')) {
-                            itemNum = refParam.split('_').pop();
-                        } else if (refParam && refParam.includes('-')) {
-                            itemNum = refParam.split('-').pop();
+                        // Strip everything after ? and add fixed parameters
+                        if (link.includes('?')) {
+                            link = link.split('?')[0];
                         }
-                        
-                        // Build clean URL with parameters in desired order
-                        const baseUrl = url.origin + url.pathname;
-                        link = `${baseUrl}?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-${itemNum}&dd=1`;
+                        link = link + '?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-1&dd=1';
                         
                         if (!link) {
                             return;
