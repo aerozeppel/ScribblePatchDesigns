@@ -80,8 +80,8 @@ def scrape_etsy_playwright(shop_url):
                         }
                         seen.add(baseLink);
                         
-                        // Add parameters to the base link
-                        link = baseLink + `?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-${position}&dd=1`;
+                        // Use clean link without any parameters
+                        link = baseLink;
                         
                         const imgEl = listing.querySelector('img');
                         let img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
