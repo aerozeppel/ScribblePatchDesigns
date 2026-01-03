@@ -315,6 +315,20 @@
             .hero h1 { font-size: 2.25rem; }
             .nav-links { display: none; }
             .nav-wrapper { justify-content: center; }
+
+            /* Add this part below */
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr); /* Forces 2 columns */
+                gap: 1rem; /* Reduces gap for smaller screens */
+            }
+
+            .product-info {
+                padding: 0.75rem; /* Slightly smaller padding for compact look */
+            }
+
+            .product-title {
+                font-size: 0.85rem; /* Shrinks text slightly to fit better */
+            }
         }
     </style>
 </head>
