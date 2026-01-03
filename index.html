@@ -19,13 +19,11 @@
     </script>
 
     <style>
-        /* Importing a cleaner font stack */
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Poppins:wght@300;400;500;600&display=swap');
         
         :root {
-            /* A more professional palette */
-            --primary: #2d3748;      /* Dark Slate for text */
-            --accent: #667eea;       /* Periwinkle for buttons/highlights */
+            --primary: #2d3748;
+            --accent: #667eea;
             --accent-hover: #5a67d8;
             --bg-color: #ffffff;
             --bg-secondary: #f7fafc;
@@ -41,7 +39,6 @@
             line-height: 1.7;
             color: var(--primary);
             background-color: var(--bg-color);
-            /* Subtle Dot Grid Background Pattern - "Scribble" notebook feel */
             background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
             background-size: 24px 24px;
         }
@@ -52,11 +49,11 @@
             padding: 0 24px;
         }
 
-        /* --- Minimalist Navigation --- */
+        /* --- Navigation --- */
         nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
-            padding: 1.2rem 0;
+            padding: 1rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -92,19 +89,22 @@
 
         .nav-links a:hover { color: var(--accent); }
         
-        /* --- Hero Section (Redesigned) --- */
+        /* --- Hero Section --- */
         .hero {
-            padding: 6rem 0 4rem;
+            padding: 4rem 0 2rem;
             text-align: center;
+        }
+
+        .hero-text-content {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 0 auto 3rem auto;
         }
 
         .hero h1 {
             font-family: 'Fredoka', sans-serif;
-            font-size: 3rem; /* Reduced from 4.5rem */
+            font-size: 3rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--primary);
             letter-spacing: -1px;
         }
@@ -112,31 +112,85 @@
         .hero p {
             font-size: 1.125rem;
             color: #4a5568;
-            margin-bottom: 2.5rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* Sleek Button */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            background: var(--primary);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 8px; /* Slightly squared is more professional than full round */
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: all 0.2s ease;
-            box-shadow: var(--soft-shadow);
+        .eyebrow {
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            letter-spacing: 2px; 
+            color: var(--accent); 
+            display: block;
+            margin-bottom: 1rem;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            background: var(--accent);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        /* --- Custom Scraped Product Grid --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            background: #f1f5f9;
+        }
+
+        .product-info {
+            padding: 1.25rem;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .buy-link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
         }
 
         /* --- Features Section --- */
@@ -156,14 +210,6 @@
             font-size: 2rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-        }
-
-        .section-header span {
-            color: var(--accent);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
         }
 
         .grid-3 {
@@ -213,32 +259,45 @@
             line-height: 1.6;
         }
 
-        /* --- Shop Section --- */
-        .shop-section {
-            padding: 5rem 0;
-        }
+        /* --- SEO / Bottom Section --- */
+        .about-section { padding: 4rem 0; }
 
-        /* --- SEO / About Text --- */
-        .about-text {
+        .about-card {
             background: var(--primary);
             color: white;
             padding: 4rem 2rem;
             text-align: center;
             border-radius: 16px;
-            margin-bottom: 4rem;
         }
 
-        .about-text h2 {
+        .about-card h2 {
             font-family: 'Fredoka', sans-serif;
             font-size: 2rem;
             margin-bottom: 1rem;
         }
 
-        .about-text p {
+        .about-card p {
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 2rem auto;
             opacity: 0.9;
             font-weight: 300;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255,255,255,0.3);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
         }
 
         footer {
@@ -250,9 +309,11 @@
             color: #718096;
         }
 
+        #loading-state { padding: 3rem; font-style: italic; color: #718096; }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.25rem; }
-            .nav-links { display: none; } /* Ideally simple hamburger here, but hiding for clean CSS-only example */
+            .nav-links { display: none; }
             .nav-wrapper { justify-content: center; }
         }
     </style>
@@ -263,8 +324,7 @@
         <div class="container nav-wrapper">
             <a href="#" class="nav-logo">Scribble Patch Designs</a>
             <div class="nav-links">
-                <a href="#how-it-works">How it Works</a>
-                <a href="#shop">Shop</a>
+                <a href="#about">About</a>
                 <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank">Etsy Store</a>
             </div>
         </div>
@@ -272,17 +332,22 @@
 
     <header class="hero">
         <div class="container">
-            <p style="text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--accent); margin-bottom: 1rem;">Instant Digital Downloads</p>
-            <h1>Color Yourself Happy</h1>
-            <p>Premium, hand-drawn PDF coloring pages for adults and kids. Instant access to Golf, Soccer, Holiday, and Kawaii themes.</p>
-            <a href="#shop" class="btn">View Collection</a>
+            <div class="hero-text-content">
+                <span class="eyebrow">Instant Digital Downloads</span>
+                <h1>Color Yourself Happy</h1>
+                <p>Premium, hand-drawn PDF coloring pages for adults and kids. Instant access to Golf, Soccer, Holiday, and Kawaii themes.</p>
+            </div>
+
+            <div id="product-grid" class="product-grid">
+                <div id="loading-state">Syncing with Etsy shop...</div>
+            </div>
         </div>
     </header>
     
-    <section id="how-it-works" class="features">
+    <section class="features">
         <div class="container">
             <div class="section-header">
-                <span>The Experience</span>
+                <span class="eyebrow" style="color: var(--accent);">The Experience</span>
                 <h2>Why Scribble Patch?</h2>
             </div>
             
@@ -306,36 +371,56 @@
         </div>
     </section>
 
-    <main class="container">
-        <section id="shop" class="shop-section">
-            <div class="section-header">
-                <span>Latest Drops</span>
-                <h2>Featured Coloring Pages</h2>
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-card">
+                <h2>Ready to start coloring?</h2>
+                <p>Our designs are optimized for crisp printing on any home printer. Start your creative journey today.</p>
+                <a href="https://www.etsy.com/shop/ScribblePatchDesigns" class="btn-outline" target="_blank">View Full Shop on Etsy</a>
             </div>
-            
-            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid var(--border);">
-                <div class='sk-ww-etsy-shop' data-embed-id='25639017'></div>
-                <script src='https://widgets.sociablekit.com/etsy-shop/widget.js' defer></script>
-            </div>
-        </section>
-
-        <section class="about-text">
-            <h2>Ready to start coloring?</h2>
-            <p>
-                Whether you need <strong>Christmas coloring sheets</strong> for a classroom or 
-                <strong>Kawaii animals</strong> for a rainy afternoon, our designs are optimized for crisp printing 
-                on any home printer.
-            </p>
-            <br>
-            <a href="https://www.etsy.com/shop/ScribblePatchDesigns" class="btn" style="background: white; color: var(--primary);">Visit Full Etsy Shop</a>
-        </section>
-    </main>
+        </div>
+    </section>
     
     <footer>
         <div class="container">
             <p>&copy; 2026 Scribble Patch Designs. Handmade with &hearts; for the creative community.</p>
         </div>
     </footer>
+
+    <script>
+        async function fetchProducts() {
+            try {
+                const response = await fetch('products.json');
+                if (!response.ok) throw new Error('JSON not found');
+                const products = await response.json();
+                
+                const grid = document.getElementById('product-grid');
+                grid.innerHTML = ''; // Clear loading state
+
+                products.forEach(product => {
+                    const productHtml = `
+                        <a href="${product.link}" class="product-card" target="_blank">
+                            <img src="${product.image}" alt="${product.title}" class="product-image">
+                            <div class="product-info">
+                                <div class="product-title">${product.title}</div>
+                                <div class="product-footer">
+                                    <span class="price">${product.price}</span>
+                                    <span class="buy-link">View Product →</span>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                    grid.insertAdjacentHTML('beforeend', productHtml);
+                });
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('loading-state').innerHTML = 
+                    'View our latest designs directly on <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank">Etsy</a>.';
+            }
+        }
+
+        window.onload = fetchProducts;
+    </script>
 
 </body>
 </html>
