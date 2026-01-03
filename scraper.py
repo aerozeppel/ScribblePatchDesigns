@@ -58,23 +58,8 @@ def scrape_etsy_playwright(shop_url):
                         const linkEl = listing.querySelector('a[href*="/listing/"]');
                         let link = linkEl ? linkEl.href : '';
                         
-                        // Keep functional params but remove tracking
-                        if (link.includes('?')) {
-                            const url = new URL(link);
-                            const params = new URLSearchParams();
-                            
-                            // Keep these functional parameters that enhance the page
-                            const keepParams = ['ls', 'sr_prefetch', 'pf_from', 'ref', 'dd'];
-                            keepParams.forEach(param => {
-                                if (url.searchParams.has(param)) {
-                                    params.set(param, url.searchParams.get(param));
-                                }
-                            });
-                            
-                            // Reconstruct URL with only functional params
-                            const paramString = params.toString();
-                            link = url.origin + url.pathname + (paramString ? '?' + paramString : '');
-                        }
+                        // Keep the full URL with all parameters - they control page layout
+                        // (Previously we stripped them, but they're needed for similar products)
                         
                         if (!link) {
                             return;
