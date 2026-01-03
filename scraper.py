@@ -5,6 +5,15 @@ import time
 def scrape_etsy_playwright(shop_url):
     print(f"Launching browser for {shop_url}...")
     
+    # Clear any existing products.json file
+    try:
+        import os
+        if os.path.exists('products.json'):
+            os.remove('products.json')
+            print("Cleared existing products.json")
+    except Exception as e:
+        print(f"Note: Could not clear old file: {e}")
+    
     with sync_playwright() as p:
         # Launch browser - headless=False lets you see it working
         browser = p.chromium.launch(
