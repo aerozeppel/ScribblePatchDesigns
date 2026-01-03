@@ -80,8 +80,8 @@ def scrape_etsy_playwright(shop_url):
                         }
                         seen.add(baseLink);
                         
-                        // Use clean link without any parameters
-                        link = baseLink;
+                        // Add question mark at the end
+                        link = baseLink + '?';
                         
                         const imgEl = listing.querySelector('img');
                         let img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
