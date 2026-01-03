@@ -1,2 +1,9 @@
 banner.psd
 *.png
+
+# Browser Data
+user_data/
+browser_data/
+profile_default/
+__pycache__/
+*.log

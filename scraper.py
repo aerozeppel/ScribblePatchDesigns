@@ -1,183 +1,202 @@
-from playwright.sync_api import sync_playwright
 import json
 import time
+from playwright.sync_api import sync_playwright
 
-def scrape_etsy_playwright(shop_url):
-    print(f"Launching browser for {shop_url}...")
-    
-    # Clear any existing products.json file
-    try:
-        import os
-        if os.path.exists('products.json'):
-            os.remove('products.json')
-            print("Cleared existing products.json")
-    except Exception as e:
-        print(f"Note: Could not clear old file: {e}")
+def scrape_shop(shop_url):
+    """
+    Scrape Etsy shop - you'll log in once, then it remembers you.
+    """
+    print(f"🚀 Starting sync for: {shop_url}\n")
     
     with sync_playwright() as p:
-        # Launch browser - headless=False lets you see it working
-        browser = p.chromium.launch(
-            headless=False,  # Change to True once working
+        # Use a persistent context with its own data directory
+        # This saves login state between runs
+        browser = p.chromium.launch_persistent_context(
+            "./browser_data",  # Local folder for browser data
+            headless=False,
+            viewport={'width': 1280, 'height': 800},
             args=['--disable-blink-features=AutomationControlled']
         )
         
-        context = browser.new_context(
-            viewport={'width': 1920, 'height': 1080},
-            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
-            locale='en-US'
-        )
-        
-        page = context.new_page()
-        
         try:
-            print("Loading shop page...")
-            page.goto(shop_url, wait_until='domcontentloaded', timeout=60000)
+            page = browser.pages[0] if browser.pages else browser.new_page()
             
-            # Wait for listings to appear
-            print("Waiting for products to load...")
+            print("📡 Opening Etsy in browser...")
+            page.goto("https://www.etsy.com", wait_until='domcontentloaded', timeout=30000)
+            
+            print("\n" + "="*70)
+            print("⚠️  If you're not logged in, please log in now.")
+            print("="*70)
+            print("\n👉 Press ENTER when you're logged in and ready to continue...")
+            input()
+            
+            print("\n📡 Navigating to your shop...")
             try:
-                page.wait_for_selector('[data-listing-id]', timeout=15000)
-            except:
-                print("Timeout waiting for products, but continuing...")
+                page.goto(shop_url, wait_until='domcontentloaded', timeout=60000)
+            except Exception as e:
+                if "interrupted" in str(e).lower():
+                    print("⚠️  Navigation was redirected (normal for login). Waiting for page to settle...")
+                    time.sleep(3)
+                else:
+                    raise
             
-            time.sleep(2)  # Extra wait for dynamic content
+            # Check if we need to log in
+            time.sleep(3)
+            current_url = page.url.lower()
             
-            # Scroll to load lazy images
-            print("Scrolling to load all images...")
+            if "sign-in" in current_url or "signin" in current_url or "ref_login_action" in current_url:
+                print("\n" + "="*70)
+                print("⚠️  YOU NEED TO LOG IN")
+                print("="*70)
+                print("\n👉 Please log in to Etsy in the browser, then press ENTER here...")
+                input()
+                
+                print("\n✅ Continuing...")
+                time.sleep(2)
+            
+            print("📜 Loading all products...")
+            
+            # Scroll to trigger lazy loading
+            for i in range(5):
+                page.evaluate(f'window.scrollTo(0, {(i+1) * 800})')
+                time.sleep(0.8)
+            
             page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
-            time.sleep(1)
+            time.sleep(2)
             
-            # Extract data directly with JavaScript for better reliability
+            print("🔍 Extracting product data...")
+            
+            # Extract products
             js_code = """
             () => {
-                const items = [];
+                const products = [];
                 const seen = new Set();
                 
-                const listings = document.querySelectorAll('[data-listing-id]');
-                let position = 1;
+                // Find all listing links
+                const links = document.querySelectorAll('a[href*="/listing/"]');
                 
-                listings.forEach(listing => {
+                links.forEach(linkEl => {
                     try {
-                        const titleEl = listing.querySelector('h3, h2, [data-listing-title]');
-                        const title = titleEl ? titleEl.textContent.trim() : '';
+                        const href = linkEl.href;
+                        if (!href || !href.includes('/listing/')) return;
                         
-                        if (!title || title === 'No Title' || title === 'Create new collection') {
-                            return;
-                        }
-                        
-                        const linkEl = listing.querySelector('a[href*="/listing/"]');
-                        let link = linkEl ? linkEl.href : '';
-                        
-                        if (!link || !link.includes('/listing/')) {
-                            return;
-                        }
-                        
-                        // Strip params to get base URL for deduplication
-                        let baseLink = link.split('?')[0];
-                        
-                        if (seen.has(baseLink)) {
-                            return;
-                        }
+                        const baseLink = href.split('?')[0];
+                        if (seen.has(baseLink)) return;
                         seen.add(baseLink);
                         
-                        // Insert shop name into URL to prevent similar items
-                        // Change: /listing/123456789 -> /ScribblePatchDesigns/listing/123456789
-                        link = baseLink.replace('/listing/', '/ScribblePatchDesigns/listing/') + '?';
+                        // Extract listing ID
+                        const listingIdMatch = baseLink.match(/listing\\/(\\d+)/);
+                        if (!listingIdMatch) return;
+                        const listingId = listingIdMatch[1];
                         
-                        const imgEl = listing.querySelector('img');
-                        let img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
+                        // Find the parent container
+                        const container = linkEl.closest('[data-listing-id]') || 
+                                         linkEl.closest('.wt-grid__item-xs-6') || 
+                                         linkEl.closest('.v2-listing-card') ||
+                                         linkEl.parentElement;
                         
-                        // Replace thumbnail size with full size
-                        if (img && img.includes('il_340x270')) {
-                            img = img.replace('il_340x270', 'il_1588xN');
-                        } else if (img && img.includes('il_170x135')) {
-                            img = img.replace('il_170x135', 'il_1588xN');
-                        } else if (img && img.includes('il_75x75')) {
-                            img = img.replace('il_75x75', 'il_1588xN');
+                        // Extract title
+                        let title = '';
+                        const titleEl = container.querySelector('h3, h2, [data-listing-title]');
+                        if (titleEl) {
+                            title = titleEl.textContent.trim();
+                        } else if (linkEl.textContent && !linkEl.querySelector('img')) {
+                            title = linkEl.textContent.trim();
                         }
                         
-                        let price = '0.00';
-                        let symbol = '$';
-                        
-                        const priceEl = listing.querySelector('[class*="currency"], [class*="price"]');
-                        if (priceEl) {
-                            const priceText = priceEl.textContent;
-                            const priceMatch = priceText.match(/[\$£€]?([\d,]+\.?\d*)/);
-                            if (priceMatch) {
-                                price = priceMatch[1];
-                                const symbolMatch = priceText.match(/([\$£€])/);
-                                if (symbolMatch) {
-                                    symbol = symbolMatch[1];
-                                }
+                        // Extract image
+                        let image = '';
+                        const imgEl = container.querySelector('img') || linkEl.querySelector('img');
+                        if (imgEl) {
+                            image = imgEl.getAttribute('data-src') || 
+                                   imgEl.getAttribute('src') || 
+                                   imgEl.getAttribute('data-srcset')?.split(' ')[0] || '';
+                            
+                            // Upgrade to full resolution
+                            if (image) {
+                                image = image.replace(/il_\\d+x\\d+/g, 'il_1588xN')
+                                            .replace(/il_\\d+xN/g, 'il_1588xN');
                             }
                         }
                         
-                        items.push({
-                            title: title,
-                            link: link,
-                            image: img,
-                            price: symbol + price
-                        });
+                        // Extract price
+                        let price = '';
+                        const priceEl = container.querySelector('[class*="currency"], [class*="price"], .wt-text-title-01');
+                        if (priceEl) {
+                            price = priceEl.textContent.trim().replace(/\\s+/g, ' ');
+                        }
                         
-                        position++;
+                        // Only add if we have at least a title or valid ID
+                        if (title || listingId) {
+                            const shareLink = `https://scribblepatchdesigns.etsy.com/listing/${listingId}?utm_source=showcase_site&utm_medium=product_grid&utm_campaign=share_and_save`;
+                            
+                            products.push({
+                                title: title || `Listing ${listingId}`,
+                                link: shareLink,
+                                image: image,
+                                price: price,
+                                listingId: listingId
+                            });
+                        }
                     } catch (e) {
-                        console.log('Error parsing listing:', e);
+                        console.error('Error:', e);
                     }
                 });
                 
-                return items;
+                return products;
             }
             """
             
             products = page.evaluate(js_code)
             
-            if not products:
-                print("\n⚠ No products found!")
-                print("Saving screenshot and HTML for debugging...")
+            if products and len(products) > 0:
+                # Save to JSON
+                with open('products.json', 'w', encoding='utf-8') as f:
+                    json.dump(products, f, indent=4, ensure_ascii=False)
+                
+                print(f"\n✅ SUCCESS: Synced {len(products)} products!")
+                print(f"💾 Saved to: products.json\n")
+                
+                # Show sample
+                print("📦 Sample product:")
+                print(f"   Title: {products[0]['title']}")
+                print(f"   Price: {products[0]['price']}")
+                print(f"   Image: {'✓' if products[0]['image'] else '✗'}")
+                print(f"   Link: {products[0]['link'][:65]}...")
+                
+            else:
+                print("\n⚠️  No products found.")
+                print("📸 Taking screenshot for debugging...")
                 page.screenshot(path='debug_screenshot.png')
+                print("Screenshot saved as: debug_screenshot.png")
                 
-                html = page.content()
+                # Save HTML for inspection
                 with open('debug_page.html', 'w', encoding='utf-8') as f:
-                    f.write(html)
-                
-                print("Saved: debug_screenshot.png and debug_page.html")
-                print("\nPossible issues:")
-                print("1. Shop might be empty or private")
-                print("2. Etsy changed their HTML structure")
-                print("3. Cloudflare is still blocking")
-                return
+                    f.write(page.content())
+                print("HTML saved as: debug_page.html")
             
-            # Save to JSON
-            with open('products.json', 'w', encoding='utf-8') as f:
-                json.dump(products, f, indent=4, ensure_ascii=False)
-            
-            print(f"\n✓ SUCCESS! Saved {len(products)} products to products.json")
-            
-            # Display first 5 products
-            if products:
-                print("\n📦 First 5 products found:")
-                for i, p in enumerate(products[:5], 1):
-                    print(f"{i}. {p['title']}")
-                    print(f"   Price: {p['price']}")
-                    print(f"   Link: {p['link'][:60]}..." if len(p['link']) > 60 else f"   Link: {p['link']}")
-                    print()
-        
         except Exception as e:
             print(f"\n❌ Error: {e}")
-            import traceback
-            traceback.print_exc()
-            
-            # Save debug info
             try:
-                page.screenshot(path='error_screenshot.png')
-                print("Saved error screenshot: error_screenshot.png")
+                if page:
+                    page.screenshot(path='error_screenshot.png')
+                    print("📸 Error screenshot saved")
             except:
                 pass
         
         finally:
-            print("\nClosing browser...")
+            print("\n👋 Closing browser in 2 seconds...")
+            time.sleep(2)
             browser.close()
 
+
 if __name__ == "__main__":
-    shop_url = "https://www.etsy.com/shop/ScribblePatchDesigns"
-    scrape_etsy_playwright(shop_url)
+    print("=" * 70)
+    print("ScribblePatch Designs - Product Sync")
+    print("=" * 70)
+    print()
+    print("ℹ️  You'll need to log in once. Your session will be saved.")
+    print("   Shop owner visits don't affect customer conversion metrics.")
+    print()
+    
+    scrape_shop("https://www.etsy.com/shop/ScribblePatchDesigns")

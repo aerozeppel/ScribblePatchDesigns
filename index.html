@@ -399,7 +399,7 @@
 
                 products.forEach(product => {
                     const productHtml = `
-                        <a href="${product.link}" class="product-card" target="_blank">
+                        <a href="${product.link}" class="product-card" target="_blank" onclick="console.log('Product clicked:', '${product.title.replace(/'/g, "\\'")}')">
                             <img src="${product.image}" alt="${product.title}" class="product-image">
                             <div class="product-info">
                                 <div class="product-title">${product.title}</div>
