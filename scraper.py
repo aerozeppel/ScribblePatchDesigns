@@ -58,11 +58,36 @@ def scrape_etsy_playwright(shop_url):
                         const linkEl = listing.querySelector('a[href*="/listing/"]');
                         let link = linkEl ? linkEl.href : '';
                         
-                        // Remove logging_key parameter (session-specific tracking)
+                        // Clean up URL and add functional parameters
                         if (link.includes('?')) {
                             const url = new URL(link);
+                            
+                            // Remove session-specific tracking params
                             url.searchParams.delete('logging_key');
+                            url.searchParams.delete('click_key');
+                            url.searchParams.delete('click_sum');
+                            
+                            // Add functional parameters that prevent similar items row
+                            url.searchParams.set('ls', 'r');
+                            url.searchParams.set('sr_prefetch', '1');
+                            url.searchParams.set('pf_from', 'shop_home');
+                            
+                            // Keep dd if present, otherwise add it
+                            if (!url.searchParams.has('dd')) {
+                                url.searchParams.set('dd', '1');
+                            }
+                            
+                            // Transform ref to pagination format if it's shop_home_active_X
+                            const refParam = url.searchParams.get('ref');
+                            if (refParam && refParam.startsWith('shop_home_active_')) {
+                                const itemNum = refParam.split('_').pop();
+                                url.searchParams.set('ref', `items-pagination-${itemNum}`);
+                            }
+                            
                             link = url.toString();
+                        } else {
+                            // If no params at all, add them
+                            link = link + '?ls=r&sr_prefetch=1&pf_from=shop_home&dd=1';
                         }
                         
                         if (!link) {
