@@ -3,181 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Printable coloring pages for adults and kids. Instant download PDF coloring sheets featuring golf, soccer, Christmas, Elf on the Shelf, kawaii animals, and Halloween themes from Scribble Patch Designs.">
-    <meta name="keywords" content="printable coloring pages, golf coloring pages, soccer coloring pages, football coloring pages, Christmas coloring pages, elf on the shelf coloring pages, kawaii animal coloring pages, Halloween coloring pages, instant download coloring pages, PDF coloring sheets, printable coloring books, adult coloring pages, kids coloring pages, Scribble Patch Designs">
-    <title>Printable Coloring Pages - Instant Download PDFs | Scribble Patch Designs</title>
+    <meta name="description" content="Download high-quality printable coloring pages for adults and kids. Instant PDF access to Golf, Soccer, Christmas, and Kawaii designs from Scribble Patch Designs.">
     
+    <title>Scribble Patch Designs | Printable Coloring Pages & Instant PDFs</title>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Brand",
+      "name": "Scribble Patch Designs",
+      "description": "Premium printable coloring pages for all ages.",
+      "url": "https://yourdomain.com",
+      "sameAs": ["https://www.etsy.com/shop/ScribblePatchDesigns"]
+    }
+    </script>
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap');
+        /* Importing a cleaner font stack */
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Poppins:wght@300;400;500;600&display=swap');
         
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            /* A more professional palette */
+            --primary: #2d3748;      /* Dark Slate for text */
+            --accent: #667eea;       /* Periwinkle for buttons/highlights */
+            --accent-hover: #5a67d8;
+            --bg-color: #ffffff;
+            --bg-secondary: #f7fafc;
+            --border: #e2e8f0;
+            --soft-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
         }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #2d3748;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* Animated background pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-            animation: pulse 15s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+            line-height: 1.7;
+            color: var(--primary);
+            background-color: var(--bg-color);
+            /* Subtle Dot Grid Background Pattern - "Scribble" notebook feel */
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        header {
-            padding: 3rem 0 4rem;
-            text-align: center;
-            position: relative;
-        }
-        
-        .logo {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 4rem;
-            font-weight: 700;
-            color: white;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            margin-bottom: 0.5rem;
-            animation: fadeInDown 0.8s ease;
-            letter-spacing: -2px;
-        }
-        
-        .tagline {
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.95);
-            font-weight: 300;
-            animation: fadeInUp 0.8s ease 0.2s both;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        main {
-            background: white;
-            border-radius: 30px 30px 0 0;
-            padding: 3rem 0;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
-            position: relative;
-            min-height: 600px;
-        }
-        
-        .hero-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 2rem 0 3rem;
-            color: white;
-            text-align: center;
-            box-shadow: 0 10px 40px rgba(240, 147, 251, 0.4);
+            padding: 0 24px;
         }
 
-        .hero-section h2 {
+        /* --- Minimalist Navigation --- */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
             font-family: 'Fredoka', sans-serif;
-            font-size: 2.5rem;
+            font-size: 1.25rem;
+            color: var(--primary);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+        
+        /* --- Hero Section (Redesigned) --- */
+        .hero {
+            padding: 6rem 0 4rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 3rem; /* Reduced from 4.5rem */
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: #4a5568;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Sleek Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px; /* Slightly squared is more professional than full round */
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: var(--accent);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Features Section --- */
+        .features {
+            padding: 5rem 0;
+            background: white;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header span {
+            color: var(--accent);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            text-align: left;
+            transition: transform 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .feature-item:hover {
+            border-color: var(--border);
+            background: white;
+            box-shadow: var(--soft-shadow);
+        }
+
+        .icon-box {
+            font-size: 1.5rem;
+            background: white;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            box-shadow: var(--soft-shadow);
+            border: 1px solid var(--border);
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            font-size: 0.95rem;
+            color: #718096;
+            line-height: 1.6;
+        }
+
+        /* --- Shop Section --- */
+        .shop-section {
+            padding: 5rem 0;
+        }
+
+        /* --- SEO / About Text --- */
+        .about-text {
+            background: var(--primary);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 4rem;
+        }
+
+        .about-text h2 {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2rem;
             margin-bottom: 1rem;
         }
-        
-        /* Widget Styling */
-        .shop-container {
-            margin-top: 4rem;
-            padding: 20px;
-            background: #fdfdfd;
-            border-radius: 20px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+
+        .about-text p {
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
-        .section-title {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 2.5rem;
-            text-align: center;
-            color: #2d3748;
-            margin-bottom: 2rem;
-        }
-        
         footer {
-            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
-            color: white;
+            background: white;
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
             text-align: center;
-            padding: 3rem 0;
-            margin-top: 0; /* Changed to sit flush with main */
+            font-size: 0.9rem;
+            color: #718096;
         }
-        
+
         @media (max-width: 768px) {
-            .logo { font-size: 2.5rem; }
-            .tagline { font-size: 1.1rem; }
+            .hero h1 { font-size: 2.25rem; }
+            .nav-links { display: none; } /* Ideally simple hamburger here, but hiding for clean CSS-only example */
+            .nav-wrapper { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <header>
+
+    <nav>
+        <div class="container nav-wrapper">
+            <a href="#" class="nav-logo">Scribble Patch Designs</a>
+            <div class="nav-links">
+                <a href="#how-it-works">How it Works</a>
+                <a href="#shop">Shop</a>
+                <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank">Etsy Store</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
         <div class="container">
-            <h1 class="logo">Scribble Patch Designs</h1>
-            <p class="tagline">✨ Printable Coloring Pages - Instant Download PDFs ✨</p>
+            <p style="text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--accent); margin-bottom: 1rem;">Instant Digital Downloads</p>
+            <h1>Color Yourself Happy</h1>
+            <p>Premium, hand-drawn PDF coloring pages for adults and kids. Instant access to Golf, Soccer, Holiday, and Kawaii themes.</p>
+            <a href="#shop" class="btn">View Collection</a>
         </div>
     </header>
     
-    <main>
+    <section id="how-it-works" class="features">
         <div class="container">
-            <div class="hero-section">
-                <h2>🎨 Color Your World Beautiful 🎨</h2>
-                <p>
-                    Welcome to your creative paradise! Discover stunning printable coloring pages perfect for adults and kids. 
-                    Download instantly, print, and start your coloring journey within minutes.
-                </p>
+            <div class="section-header">
+                <span>The Experience</span>
+                <h2>Why Scribble Patch?</h2>
             </div>
+            
+            <div class="grid-3">
+                <div class="feature-item">
+                    <div class="icon-box">⚡</div>
+                    <h3>Instant Access</h3>
+                    <p>No shipping, no waiting. Receive high-resolution PDF files immediately after checkout to print at home.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box">🎨</div>
+                    <h3>Unique Themes</h3>
+                    <p>From niche sports like Golf and Soccer to cute Kawaii animals, we create designs you won't find elsewhere.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon-box">🧘</div>
+                    <h3>Mindful Relaxation</h3>
+                    <p>Designs ranging from simple fun for kids to intricate patterns perfect for adult stress relief.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <div class="shop-container">
-                <h2 class="section-title">✨ Shop My Coloring Pages ✨</h2>
-                
+    <main class="container">
+        <section id="shop" class="shop-section">
+            <div class="section-header">
+                <span>Latest Drops</span>
+                <h2>Featured Coloring Pages</h2>
+            </div>
+            
+            <div style="background: white; padding: 1rem; border-radius: 12px; border: 1px solid var(--border);">
                 <div class='sk-ww-etsy-shop' data-embed-id='25639017'></div>
                 <script src='https://widgets.sociablekit.com/etsy-shop/widget.js' defer></script>
             </div>
-        </div>
+        </section>
+
+        <section class="about-text">
+            <h2>Ready to start coloring?</h2>
+            <p>
+                Whether you need <strong>Christmas coloring sheets</strong> for a classroom or 
+                <strong>Kawaii animals</strong> for a rainy afternoon, our designs are optimized for crisp printing 
+                on any home printer.
+            </p>
+            <br>
+            <a href="https://www.etsy.com/shop/ScribblePatchDesigns" class="btn" style="background: white; color: var(--primary);">Visit Full Etsy Shop</a>
+        </section>
     </main>
     
     <footer>
         <div class="container">
-            <p>&copy; 2026 Scribble Patch Designs. All rights reserved.</p>
-            <p>🎨 Bringing Color to Your World 🎨</p>
+            <p>&copy; 2026 Scribble Patch Designs. Handmade with &hearts; for the creative community.</p>
         </div>
     </footer>
+
 </body>
 </html>
