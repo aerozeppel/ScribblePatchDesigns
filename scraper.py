@@ -54,7 +54,7 @@ def scrape_etsy_playwright(shop_url):
                 const seen = new Set();
                 
                 const listings = document.querySelectorAll('[data-listing-id]');
-                let position = 1; // Track position for pagination parameter
+                let position = 1;
                 
                 listings.forEach(listing => {
                     try {
@@ -68,20 +68,20 @@ def scrape_etsy_playwright(shop_url):
                         const linkEl = listing.querySelector('a[href*="/listing/"]');
                         let link = linkEl ? linkEl.href : '';
                         
-                        // Strip everything after ? and add parameters with current position
-                        if (link.includes('?')) {
-                            link = link.split('?')[0];
-                        }
-                        link = link + `?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-${position}&dd=1`;
-                        
-                        if (!link) {
+                        if (!link || !link.includes('/listing/')) {
                             return;
                         }
                         
-                        if (seen.has(link)) {
+                        // Strip params to get base URL for deduplication
+                        let baseLink = link.split('?')[0];
+                        
+                        if (seen.has(baseLink)) {
                             return;
                         }
-                        seen.add(link);
+                        seen.add(baseLink);
+                        
+                        // Add parameters to the base link
+                        link = baseLink + `?ls=r&sr_prefetch=1&pf_from=shop_home&ref=items-pagination-${position}&dd=1`;
                         
                         const imgEl = listing.querySelector('img');
                         let img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
@@ -118,7 +118,7 @@ def scrape_etsy_playwright(shop_url):
                             price: symbol + price
                         });
                         
-                        position++; // Increment position for next product
+                        position++;
                     } catch (e) {
                         console.log('Error parsing listing:', e);
                     }
