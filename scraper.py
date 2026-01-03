@@ -80,8 +80,9 @@ def scrape_etsy_playwright(shop_url):
                         }
                         seen.add(baseLink);
                         
-                        // Add question mark at the end
-                        link = baseLink + '?';
+                        // Insert shop name into URL to prevent similar items
+                        // Change: /listing/123456789 -> /ScribblePatchDesigns/listing/123456789
+                        link = baseLink.replace('/listing/', '/ScribblePatchDesigns/listing/') + '?';
                         
                         const imgEl = listing.querySelector('img');
                         let img = imgEl ? (imgEl.dataset.src || imgEl.src || '') : '';
