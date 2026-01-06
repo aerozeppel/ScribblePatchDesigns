@@ -140,7 +140,11 @@ def get_head(title, description, url, image):
         
         .pd-title {{ font-family: 'Fredoka', sans-serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }}
         .pd-price {{ font-size: 1.5rem; color: var(--accent); font-weight: 600; margin-bottom: 2rem; }}
-        .pd-desc {{ white-space: pre-wrap; color: #4a5568; margin-bottom: 2rem; }}
+        .pd-desc {{ color: #4a5568; margin-bottom: 2rem; line-height: 1.8; }}
+        .pd-desc p {{ margin-bottom: 1rem; }}
+        .pd-desc h4 {{ margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary); }}
+        .pd-desc ul {{ margin-left: 1.5rem; margin-bottom: 1rem; }}
+        .pd-desc li {{ margin-bottom: 0.5rem; }}
         .btn-primary {{
             background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px;
             text-decoration: none; font-weight: 600; display: inline-block; transition: background 0.2s;
@@ -183,7 +187,97 @@ def get_footer():
 </html>
 """
 
+def format_description(description):
+    """
+    Formats product descriptions with proper structure:
+    - Converts multiple newlines to paragraphs
+    - Detects and formats headers (lines ending with :)
+    - Converts bullet points to proper lists
+    - Adds proper spacing
+    """
+    if not description:
+        return ""
+    
+    # Split into lines and clean up
+    lines = description.split('\n')
+    formatted_html = []
+    in_list = False
+    current_paragraph = []
+    
+    for line in lines:
+        line = line.strip()
+        
+        # Skip empty lines initially
+        if not line:
+            # Close any open paragraph
+            if current_paragraph:
+                formatted_html.append(f"<p>{''.join(current_paragraph)}</p>")
+                current_paragraph = []
+            # Close any open list
+            if in_list:
+                formatted_html.append("</ul>")
+                in_list = False
+            continue
+        
+        # Check if it's a header (ends with : or looks like a title)
+        if line.endswith(':') or (len(line) < 60 and line[0].isupper() and not line.endswith('.')):
+            # Close paragraph if open
+            if current_paragraph:
+                formatted_html.append(f"<p>{''.join(current_paragraph)}</p>")
+                current_paragraph = []
+            # Close list if open
+            if in_list:
+                formatted_html.append("</ul>")
+                in_list = False
+            # Add as heading
+            formatted_html.append(f"<h4 style='margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; color: var(--primary);'>{line}</h4>")
+            continue
+        
+        # Check if it's a bullet point
+        if line.startswith(('✨', '✓', '✦', '📄', '🖨️', '📏', '💝', '•', '-', '*', '→')):
+            # Close paragraph if open
+            if current_paragraph:
+                formatted_html.append(f"<p>{''.join(current_paragraph)}</p>")
+                current_paragraph = []
+            # Start list if not already in one
+            if not in_list:
+                formatted_html.append("<ul style='margin-left: 1.5rem; margin-bottom: 1rem; list-style-type: none;'>")
+                in_list = True
+            # Add list item (keep the emoji/symbol)
+            formatted_html.append(f"<li style='margin-bottom: 0.5rem;'>{line}</li>")
+            continue
+        
+        # Regular text - add to current paragraph
+        if in_list:
+            formatted_html.append("</ul>")
+            in_list = False
+        
+        current_paragraph.append(line + ' ')
+    
+    # Close any remaining open elements
+    if current_paragraph:
+        formatted_html.append(f"<p>{''.join(current_paragraph)}</p>")
+    if in_list:
+        formatted_html.append("</ul>")
+    
+    return ''.join(formatted_html)
+
 def generate_product_card(product):
+    """Generates a product card with proper image handling"""
+    link = f"/products/{product['slug']}.html"
+    img_src = get_product_image(product)
+    
+    return f"""
+    <a href="{link}" class="product-card">
+        <img src="{img_src}" alt="{product['title']}" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">{product['title']}</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    """
     """Generates a product card with proper image handling"""
     link = f"/products/{product['slug']}.html"
     img_src = get_product_image(product)
@@ -220,8 +314,8 @@ def build_product_page(product, all_products):
         main_img = get_product_image(product)
         thumbs_html = ""
 
-    # Clean description
-    desc_html = product.get('description', '').replace('\n', '<br>')
+    # Format description with proper structure
+    desc_html = format_description(product.get('description', ''))
 
     html = get_head(
         title=product['title'],
