@@ -3,40 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Instant PDF coloring pages from £1.44! Premium printable designs for adults & kids: Kawaii animals, Christmas themes, Golf, Soccer & Unicorns. Download and print at home today.">
+    <meta name="description" content="High-quality coloring pages for adults & kids. Kawaii animals, Christmas, Sports themes from £1.44.">
+    <title>Premium Printable Coloring Pages | Scribble Patch Designs</title>
+    <link rel="icon" type="image/png" href="./favicon.png">
     
-    <title>Premium Printable Coloring Pages – Instant PDF Downloads | Scribble Patch Designs</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-
-    <link rel="canonical" href="https://www.scribblepatchdesigns.com/">
-    
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="Premium Printable Coloring Pages – Instant PDF Downloads">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Premium Printable Coloring Pages">
     <meta property="og:description" content="High-quality coloring pages for adults & kids. Kawaii animals, Christmas, Sports themes from £1.44.">
-    <meta property="og:image" content="https://www.scribblepatchdesigns.com/og-image.jpg">
+    <meta property="og:image" content="">
     <meta property="og:url" content="https://www.scribblepatchdesigns.com/">
     <meta property="og:type" content="website">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Premium Printable Coloring Pages – Instant PDF Downloads">
-    <meta name="twitter:description" content="High-quality coloring pages for adults & kids from £1.44">
-    
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Scribble Patch Designs",
-      "description": "Premium printable coloring pages for all ages",
-      "url": "https://www.scribblepatchdesigns.com/",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Scribble Patch Designs",
-        "sameAs": ["https://www.etsy.com/shop/ScribblePatchDesigns"]
-      }
-    }
-    </script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Poppins:wght@300;400;500;600&display=swap');
         
@@ -62,13 +39,10 @@
             background-size: 24px 24px;
         }
         
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        img { max-width: 100%; display: block; }
 
-        /* --- Navigation --- */
+        /* Navigation */
         nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(8px);
@@ -78,407 +52,86 @@
             z-index: 1000;
             border-bottom: 1px solid var(--border);
         }
-
-        .nav-wrapper {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.25rem;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: color 0.2s;
-        }
-
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--accent); }
-        
-        /* --- Hero Section --- */
-        .hero {
-            padding: 4rem 0 2rem;
-            text-align: center;
-        }
 
-        .hero-text-content {
-            max-width: 800px;
-            margin: 0 auto 2rem auto;
-        }
-
-        .hero h1 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 2.75rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 1.125rem;
-            color: #4a5568;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 1.5rem;
-        }
-
-        .eyebrow {
-            text-transform: uppercase; 
-            font-size: 0.85rem; 
-            font-weight: 600; 
-            letter-spacing: 2px; 
-            color: var(--accent); 
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        /* --- Product Carousel --- */
-        .product-carousel {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 2rem 0;
-            margin: 0 -24px 2rem -24px;
-            padding-left: 24px;
-            padding-right: 24px;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-        .product-carousel::-webkit-scrollbar {
-            display: none;
-        }
-
-        .carousel-item {
-            flex: 0 0 auto;
-            width: 200px;
-            height: 200px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: white;
-        }
-
-        .carousel-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-
-        .carousel-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* --- Intro Content Section --- */
-        .intro-content {
-            max-width: 800px;
-            margin: 2rem auto 3rem;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            text-align: left;
-        }
-
-        .intro-content h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .intro-content p {
-            margin-bottom: 1rem;
-            color: #4a5568;
-            line-height: 1.8;
-        }
-
-        .intro-content ul {
-            margin: 1rem 0 1rem 1.5rem;
-            color: #4a5568;
-        }
-
-        .intro-content li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* --- Product Grid --- */
+        /* Product Grids */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
-            margin-top: 2rem;
+            margin: 2rem 0;
         }
-
         .product-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            text-decoration: none;
-            color: inherit;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            text-align: left;
+            background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+            text-decoration: none; color: inherit; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; text-align: left;
         }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); }
+        .product-image { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f1f5f9; }
+        .product-info { padding: 1.25rem; flex-grow: 1; }
+        .product-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.75rem; line-height: 1.4; }
+        .product-footer { display: flex; justify-content: flex-end; align-items: center; margin-top: auto; }
+        .buy-link { font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+        
+        /* Buttons */
+        .btn-outline { display: inline-block; background: transparent; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 500; border: 1px solid; transition: all 0.2s; }
+        .btn-outline:hover { background: rgba(0,0,0,0.05); }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+        /* Footer */
+        footer { background: white; border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; margin-top: 4rem; color: #718096; }
+
+        /* --- Page Specific Styles --- */
+        
+        .breadcrumb { margin: 2rem 0; font-size: 0.9rem; color: #718096; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        
+        .product-detail-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding-bottom: 4rem; }
+        .gallery-main { width: 100%; border-radius: 16px; margin-bottom: 1rem; border: 1px solid var(--border); }
+        .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
+        .gallery-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+        .gallery-thumb:hover, .gallery-thumb.active { border-color: var(--accent); opacity: 0.8; }
+        
+        .pd-title { font-family: 'Fredoka', sans-serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .pd-price { font-size: 1.5rem; color: var(--accent); font-weight: 600; margin-bottom: 2rem; }
+        .pd-desc { white-space: pre-wrap; color: #4a5568; margin-bottom: 2rem; }
+        .btn-primary {
+            background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; display: inline-block; transition: background 0.2s;
+            text-align: center; width: 100%;
         }
+        .btn-primary:hover { background: var(--accent-hover); }
 
-        .product-image {
-            width: 100%;
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            background: #f1f5f9;
-        }
+        /* Collection Header */
+        .collection-header { padding: 4rem 0; text-align: center; }
+        .collection-header h1 { font-family: 'Fredoka', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+        
+        /* Hero (Home) */
+        .hero { padding: 4rem 0 2rem; text-align: center; }
+        .hero h1 { font-family: 'Fredoka', sans-serif; font-size: 2.75rem; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero p { font-size: 1.125rem; color: #4a5568; max-width: 650px; margin: 0 auto 1.5rem; }
+        .eyebrow { text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--accent); display: block; margin-bottom: 1rem; }
 
-        .product-info {
-            padding: 1.25rem;
-            flex-grow: 1;
-        }
-
-        .product-title {
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-
-        .buy-link {
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: var(--accent);
-            transition: color 0.2s;
-        }
-
-        .buy-link:hover {
-            color: var(--accent-hover);
-        }
-
-        /* --- Features Section --- */
-        .features {
-            padding: 5rem 0;
-            background: white;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-item {
-            padding: 2rem;
-            border-radius: 12px;
-            background: var(--bg-secondary);
-            text-align: left;
-            transition: transform 0.2s;
-            border: 1px solid transparent;
-        }
-
-        .feature-item:hover {
-            border-color: var(--border);
-            background: white;
-            box-shadow: var(--soft-shadow);
-        }
-
-        .icon-box {
-            font-size: 1.5rem;
-            background: white;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            box-shadow: var(--soft-shadow);
-            border: 1px solid var(--border);
-        }
-
-        .feature-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .feature-item p {
-            font-size: 0.95rem;
-            color: #718096;
-            line-height: 1.6;
-        }
-
-        /* --- About Section --- */
-        .about-section { padding: 4rem 0; }
-
-        .about-card {
-            background: var(--primary);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-            border-radius: 16px;
-        }
-
-        .about-card h2 {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .about-card p {
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-
-        .btn-outline {
-            display: inline-block;
-            background: transparent;
-            color: white;
-            border: 2px solid rgba(255,255,255,0.3);
-            padding: 12px 30px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-
-        .btn-outline:hover {
-            border-color: white;
-            background: rgba(255,255,255,0.1);
-        }
-
-        footer {
-            background: white;
-            border-top: 1px solid var(--border);
-            padding: 2rem 0;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #718096;
-        }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 12px; 
-            }
-
-            .hero h1 { 
-                font-size: 2rem;
-                letter-spacing: -0.5px;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .product-carousel {
-                margin: 0 -12px 1.5rem -12px;
-                padding-left: 12px;
-                padding-right: 12px;
-                gap: 0.5rem;
-            }
-
-            .carousel-item {
-                width: 150px;
-                height: 150px;
-            }
-
-            .intro-content {
-                padding: 1.5rem;
-                margin: 1.5rem auto 2rem;
-            }
-
-            .intro-content h2 {
-                font-size: 1.25rem;
-            }
-
-            .nav-links { display: none; }
-            .nav-wrapper { justify-content: center; }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.5rem;
-                margin-top: 1rem;
-            }
-
-            .product-info {
-                padding: 0.75rem; 
-            }
-
-            .product-title {
-                font-size: 0.85rem;
-                margin-bottom: 0.5rem;
-                line-height: 1.3;
-            }
-
-            .product-footer {
-                flex-direction: row;
-                align-items: center;
-                gap: 0;
-            }
-
-            .buy-link {
-                font-size: 0.75rem;
-            }
+            .product-detail-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+            .pd-title { font-size: 2rem; }
+            .nav-links { display: none; } 
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
-
     <nav>
         <div class="container nav-wrapper">
-            <a href="/" class="nav-logo">Scribble Patch Designs</a>
+            <a href="./index.html" class="nav-logo">Scribble Patch Designs</a>
             <div class="nav-links">
-                <a href="#products">Products</a>
-                <a href="#about">About</a>
-                <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank" rel="noopener">Etsy Store</a>
+                <a href="./index.html">Home</a>
+                <a href="./index.html#products">All Products</a>
+                <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank">Etsy Store</a>
             </div>
         </div>
     </nav>
@@ -488,159 +141,94 @@
             <div class="hero-text-content">
                 <span class="eyebrow">Instant Digital Downloads</span>
                 <h1>Premium Printable Coloring Pages for Adults & Kids</h1>
-                <p>High-quality PDF coloring pages from £1.44. Instant download, print at home. Featuring Kawaii animals, Christmas themes, Sports, and Fantasy designs perfect for mindful relaxation.</p>
-            </div>
-
-            <!-- Horizontal Scrolling Product Carousel -->
-            <div class="product-carousel">
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4407864739" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/4d0508/7479002949/il_1588xN.7479002949_og49.jpg" alt="Kawaii Animals Coloring Pages">
-                </a>
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4405553812" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/c52ad9/7479057813/il_1588xN.7479057813_a48g.jpg" alt="Christmas Kawaii Coloring Pages">
-                </a>
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4414483304" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/4c68e0/7454715958/il_1588xN.7454715958_alqp.jpg" alt="Soccer Coloring Pages">
-                </a>
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4389399035" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/67cc81/7478989653/il_1588xN.7478989653_rxuw.jpg" alt="Golf Coloring Pages">
-                </a>
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4403544038" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/5ec9dc/7447184638/il_1588xN.7447184638_4uel.jpg" alt="Christmas Elf Coloring Pages">
-                </a>
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4419208436" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/cdc4d7/7529055793/il_1588xN.7529055793_tp5s.jpg" alt="Unicorn Coloring Pages">
-                </a>
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4392737821" class="carousel-item" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/321434/7369431297/il_1588xN.7369431297_o4b6.jpg" alt="Spooky Cats Coloring Pages">
-                </a>
-            </div>
-
-            <div class="intro-content">
-                <h2>Why Choose Scribble Patch Designs?</h2>
-                <p>We create premium printable coloring pages that bring joy to colorists of all ages and skill levels. Each design is carefully crafted with clean lines, intricate details, and engaging themes that spark creativity and provide hours of relaxing entertainment.</p>
-                
-                <p>Our collection includes a diverse range of themes to suit every interest:</p>
-                <ul>
-                    <li><strong>Kawaii Animal Coloring Pages:</strong> Adorable animals in charming scenarios, from cute cats to animals at work</li>
-                    <li><strong>Christmas & Holiday Coloring:</strong> Festive designs including Elf on the Shelf and seasonal characters</li>
-                    <li><strong>Sports Coloring Pages:</strong> Perfect for young athletes - golf and soccer/football themed designs</li>
-                    <li><strong>Fantasy Themes:</strong> Magical unicorns and whimsical creatures for imaginative coloring</li>
-                </ul>
-
-                <p>All our coloring pages are delivered as high-resolution PDF files that you can download instantly after purchase. Print them as many times as you like on any home printer. No shipping costs, no waiting - just pure creative fun available immediately. Whether you're looking for a calming adult coloring activity, engaging entertainment for children, or thoughtful printable gifts, our affordable designs deliver exceptional quality and value.</p>
-            </div>
-
-            <h2 id="products" style="font-size: 1.75rem; margin-bottom: 1rem; font-weight: 600;">Our Coloring Page Collection</h2>
-
-            <div class="product-grid">
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4403544038" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/5ec9dc/7447184638/il_1588xN.7447184638_4uel.jpg" alt="Christmas Coloring Pages - Elf on a Shelf printable activity book for kids - instant download PDF" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Christmas Coloring Pages - Elf on a Shelf - Printable Activity Book - Instant Download</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4414483304" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/4c68e0/7454715958/il_1588xN.7454715958_alqp.jpg" alt="Soccer Football Coloring Pages - printable activity book PDF for teens and kids" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4419208436" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/cdc4d7/7529055793/il_1588xN.7529055793_tp5s.jpg" alt="Unicorn Coloring Pages - printable fantasy coloring book PDF for kids and girls" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4389399035" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/67cc81/7478989653/il_1588xN.7478989653_rxuw.jpg" alt="Golf Coloring Pages PDF - printable sports activity for kids and adults" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4407864739" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/4d0508/7479002949/il_1588xN.7479002949_og49.jpg" alt="Kawaii Coloring Pages featuring cute animals at work - printable PDF activity for kids and teens" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4405553812" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/c52ad9/7479057813/il_1588xN.7479057813_a48g.jpg" alt="Christmas Coloring Pages with Kawaii cute animals - printable PDF holiday activity book for kids" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Christmas Coloring Pages: Kawaii Cute Animals Book, Printable PDF Instant Download Holiday Activity</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="https://scribblepatchdesigns.etsy.com/listing/4392737821" class="product-card" target="_blank" rel="noopener">
-                    <img src="https://i.etsystatic.com/62598625/r/il/321434/7369431297/il_1588xN.7369431297_o4b6.jpg" alt="Kawaii Coloring Pages - Spooky Cats printable PDF activity for kids and teens" class="product-image" loading="lazy">
-                    <div class="product-info">
-                        <div class="product-title">Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens</div>
-                        <div class="product-footer">
-                            <span class="buy-link">View on Etsy →</span>
-                        </div>
-                    </div>
-                </a>
+                <p>High-quality PDF coloring pages from £1.44. Instant download, print at home. Featuring Kawaii animals, Christmas themes, Sports, and Fantasy designs.</p>
+                <div style="display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;"><a href="collections/christmas.html" class="btn-outline" style="color: var(--primary); border-color: var(--border); font-size: 0.8rem;">Christmas</a><a href="collections/sports.html" class="btn-outline" style="color: var(--primary); border-color: var(--border); font-size: 0.8rem;">Sports</a><a href="collections/kids.html" class="btn-outline" style="color: var(--primary); border-color: var(--border); font-size: 0.8rem;">Kids</a><a href="collections/fantasy.html" class="btn-outline" style="color: var(--primary); border-color: var(--border); font-size: 0.8rem;">Fantasy</a><a href="collections/kawaii.html" class="btn-outline" style="color: var(--primary); border-color: var(--border); font-size: 0.8rem;">Kawaii</a><a href="collections/animals.html" class="btn-outline" style="color: var(--primary); border-color: var(--border); font-size: 0.8rem;">Animals</a></div>
             </div>
         </div>
     </header>
-    
-    <section class="features">
-        <div class="container">
-            <div class="section-header">
-                <span class="eyebrow" style="color: var(--accent);">The Experience</span>
-                <h2>Why Scribble Patch?</h2>
-            </div>
-            
-            <div class="grid-3">
-                <div class="feature-item">
-                    <div class="icon-box">⚡</div>
-                    <h3>Instant Access</h3>
-                    <p>No shipping, no waiting. Receive high-resolution PDF files immediately after checkout to print at home as many times as you want.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon-box">🎨</div>
-                    <h3>Premium Designs</h3>
-                    <p>From niche sports like Golf and Soccer to cute Kawaii animals and festive Christmas themes, we provide high-quality designs you won't find elsewhere.</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon-box">🧘</div>
-                    <h3>Mindful Relaxation</h3>
-                    <p>Professional line art ranging from simple fun for kids to intricate patterns perfect for adult stress relief and creative meditation.</p>
-                </div>
+
+    <div class="container">
+        <h2 id="products" style="font-size: 1.75rem; margin-bottom: 1rem; font-weight: 600; text-align:center;">Our Coloring Page Collection</h2>
+        <div class="product-grid">
+    <a href="./products/christmas-coloring-pages-elf-on-a-shelf-printable-activity-book-instant-download.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Christmas Coloring Pages - Elf on a Shelf - Printable Activity Book - Instant Download" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Christmas Coloring Pages - Elf on a Shelf - Printable Activity Book - Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
             </div>
         </div>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="container">
-            <div class="about-card">
-                <h2>Ready to start coloring?</h2>
-                <p>Our high-quality designs are optimized for crisp printing on any home printer. Browse our full collection on Etsy and start your creative journey today with instant PDF downloads from just £1.44.</p>
-                <a href="https://www.etsy.com/shop/ScribblePatchDesigns" class="btn-outline" target="_blank" rel="noopener">View Full Shop on Etsy</a>
+    </a>
+    
+    <a href="./products/soccer-football-coloring-pages-printable-activity-book-pdf-instant-download-teen-kids-gift.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
             </div>
+        </div>
+    </a>
+    
+    <a href="./products/unicorn-coloring-pages-printable-colouring-book-pdf-cute-fantasy-activity-for-kids-girls.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="./products/golf-coloring-pages-pdf-printable-sports-activity-for-kids-adults-instant-download.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="./products/kawaii-coloring-pages-cute-animals-at-work-for-kids-and-teens-instant-download.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="./products/christmas-coloring-pages-kawaii-cute-animals-book-printable-pdf-instant-download-holiday-activity.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Christmas Coloring Pages: Kawaii Cute Animals Book, Printable PDF Instant Download Holiday Activity" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Christmas Coloring Pages: Kawaii Cute Animals Book, Printable PDF Instant Download Holiday Activity</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="./products/kawaii-coloring-pages-spooky-cats-printable-pdf-activity-for-kids-teens.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    </div>
+    </div>
+    
+    <section id="about" style="padding: 4rem 0; background: white; margin-top: 4rem; border-top: 1px solid var(--border);">
+        <div class="container" style="text-align: center;">
+            <h2 style="font-family: 'Fredoka', sans-serif; font-size: 2rem; margin-bottom: 1rem;">Why Scribble Patch?</h2>
+            <p style="max-width: 700px; margin: 0 auto; color: #4a5568;">
+                We create premium printable coloring pages that bring joy to colorists of all ages and skill levels. 
+                From niche sports like Golf and Soccer to cute Kawaii animals and festive Christmas themes.
+            </p>
         </div>
     </section>
     
@@ -649,30 +237,5 @@
             <p>&copy; 2026 Scribble Patch Designs. Created with ♥ for the creative community.</p>
         </div>
     </footer>
-
-    <script>
-        // Shuffle carousel on page load
-        function shuffleCarousel() {
-            const carousel = document.querySelector('.product-carousel');
-            const items = Array.from(carousel.children);
-            
-            // Fisher-Yates shuffle
-            for (let i = items.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [items[i], items[j]] = [items[j], items[i]];
-            }
-            
-            // Re-append in shuffled order
-            items.forEach(item => carousel.appendChild(item));
-        }
-
-        // Run on page load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', shuffleCarousel);
-        } else {
-            shuffleCarousel();
-        }
-    </script>
-
 </body>
 </html>

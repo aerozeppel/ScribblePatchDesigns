@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Browse our collection of sports coloring pages.">
-    <title>Sports Coloring Pages | Scribble Patch Designs</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="description" content="Browse our collection of kids coloring pages.">
+    <title>Kids Coloring Pages | Scribble Patch Designs</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Sports Coloring Pages">
-    <meta property="og:description" content="Browse our collection of sports coloring pages.">
+    <meta property="og:title" content="Kids Coloring Pages">
+    <meta property="og:description" content="Browse our collection of kids coloring pages.">
     <meta property="og:image" content="">
-    <meta property="og:url" content="https://www.scribblepatchdesigns.com/collections/sports">
+    <meta property="og:url" content="https://www.scribblepatchdesigns.com/collections/kids">
     <meta property="og:type" content="website">
     
     <style>
@@ -76,13 +76,16 @@
         .product-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.75rem; line-height: 1.4; }
         .product-footer { display: flex; justify-content: flex-end; align-items: center; margin-top: auto; }
         .buy-link { font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+        
+        /* Buttons */
+        .btn-outline { display: inline-block; background: transparent; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-weight: 500; border: 1px solid; transition: all 0.2s; }
+        .btn-outline:hover { background: rgba(0,0,0,0.05); }
 
         /* Footer */
         footer { background: white; border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; margin-top: 4rem; color: #718096; }
 
         /* --- Page Specific Styles --- */
         
-        /* Product Details */
         .breadcrumb { margin: 2rem 0; font-size: 0.9rem; color: #718096; }
         .breadcrumb a { color: var(--accent); text-decoration: none; }
         
@@ -105,21 +108,29 @@
         /* Collection Header */
         .collection-header { padding: 4rem 0; text-align: center; }
         .collection-header h1 { font-family: 'Fredoka', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+        
+        /* Hero (Home) */
+        .hero { padding: 4rem 0 2rem; text-align: center; }
+        .hero h1 { font-family: 'Fredoka', sans-serif; font-size: 2.75rem; line-height: 1.2; margin-bottom: 1rem; letter-spacing: -1px; }
+        .hero p { font-size: 1.125rem; color: #4a5568; max-width: 650px; margin: 0 auto 1.5rem; }
+        .eyebrow { text-transform: uppercase; font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; color: var(--accent); display: block; margin-bottom: 1rem; }
+
 
         @media (max-width: 768px) {
             .product-detail-wrapper { grid-template-columns: 1fr; gap: 2rem; }
             .pd-title { font-size: 2rem; }
-            .nav-links { display: none; } /* Simplified mobile nav for this script */
+            .nav-links { display: none; } 
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; }
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="container nav-wrapper">
-            <a href="/" class="nav-logo">Scribble Patch Designs</a>
+            <a href="../index.html" class="nav-logo">Scribble Patch Designs</a>
             <div class="nav-links">
-                <a href="/">Home</a>
-                <a href="/#products">All Products</a>
+                <a href="../index.html">Home</a>
+                <a href="../index.html#products">All Products</a>
                 <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank">Etsy Store</a>
             </div>
         </div>
@@ -128,14 +139,14 @@
     <div class="collection-header">
         <div class="container">
             <span style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600;">Collection</span>
-            <h1>Sports Coloring Pages</h1>
+            <h1>Kids Coloring Pages</h1>
             <p>Explore our unique printable designs.</p>
         </div>
     </div>
     
     <div class="container">
         <div class="product-grid">
-    <a href="/products/soccer-football-coloring-pages-printable-activity-book-pdf-instant-download-teen-kids-gift.html" class="product-card">
+    <a href="../products/soccer-football-coloring-pages-printable-activity-book-pdf-instant-download-teen-kids-gift.html" class="product-card">
         <img src="https://placehold.co/400?text=No+Image" alt="Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift" class="product-image" loading="lazy">
         <div class="product-info">
             <div class="product-title">Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift</div>
@@ -145,10 +156,40 @@
         </div>
     </a>
     
-    <a href="/products/golf-coloring-pages-pdf-printable-sports-activity-for-kids-adults-instant-download.html" class="product-card">
+    <a href="../products/unicorn-coloring-pages-printable-colouring-book-pdf-cute-fantasy-activity-for-kids-girls.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="../products/golf-coloring-pages-pdf-printable-sports-activity-for-kids-adults-instant-download.html" class="product-card">
         <img src="https://placehold.co/400?text=No+Image" alt="Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download" class="product-image" loading="lazy">
         <div class="product-info">
             <div class="product-title">Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="../products/kawaii-coloring-pages-cute-animals-at-work-for-kids-and-teens-instant-download.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="../products/kawaii-coloring-pages-spooky-cats-printable-pdf-activity-for-kids-teens.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens</div>
             <div class="product-footer">
                 <span class="buy-link">View Details →</span>
             </div>
