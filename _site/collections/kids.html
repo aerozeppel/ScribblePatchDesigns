@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our collection of kids coloring pages.">
+    <title>Kids Coloring Pages | Scribble Patch Designs</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Kids Coloring Pages">
+    <meta property="og:description" content="Browse our collection of kids coloring pages.">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="https://www.scribblepatchdesigns.com/collections/kids">
+    <meta property="og:type" content="website">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        :root {
+            --primary: #2d3748;
+            --accent: #667eea;
+            --accent-hover: #5a67d8;
+            --bg-color: #ffffff;
+            --bg-secondary: #f7fafc;
+            --border: #e2e8f0;
+            --soft-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--primary);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        img { max-width: 100%; display: block; }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .nav-logo { font-family: 'Fredoka', sans-serif; font-size: 1.25rem; color: var(--primary); text-decoration: none; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { color: var(--primary); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Product Grids */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .product-card {
+            background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--border);
+            text-decoration: none; color: inherit; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; text-align: left;
+        }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 12px 20px rgba(0,0,0,0.08); }
+        .product-image { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #f1f5f9; }
+        .product-info { padding: 1.25rem; flex-grow: 1; }
+        .product-title { font-weight: 600; font-size: 1rem; margin-bottom: 0.75rem; line-height: 1.4; }
+        .product-footer { display: flex; justify-content: flex-end; align-items: center; margin-top: auto; }
+        .buy-link { font-size: 0.875rem; font-weight: 600; color: var(--accent); }
+
+        /* Footer */
+        footer { background: white; border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; margin-top: 4rem; color: #718096; }
+
+        /* --- Page Specific Styles --- */
+        
+        /* Product Details */
+        .breadcrumb { margin: 2rem 0; font-size: 0.9rem; color: #718096; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        
+        .product-detail-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding-bottom: 4rem; }
+        .gallery-main { width: 100%; border-radius: 16px; margin-bottom: 1rem; border: 1px solid var(--border); }
+        .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
+        .gallery-thumb { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; transition: all 0.2s; }
+        .gallery-thumb:hover, .gallery-thumb.active { border-color: var(--accent); opacity: 0.8; }
+        
+        .pd-title { font-family: 'Fredoka', sans-serif; font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .pd-price { font-size: 1.5rem; color: var(--accent); font-weight: 600; margin-bottom: 2rem; }
+        .pd-desc { white-space: pre-wrap; color: #4a5568; margin-bottom: 2rem; }
+        .btn-primary {
+            background: var(--accent); color: white; padding: 1rem 2rem; border-radius: 8px;
+            text-decoration: none; font-weight: 600; display: inline-block; transition: background 0.2s;
+            text-align: center; width: 100%;
+        }
+        .btn-primary:hover { background: var(--accent-hover); }
+
+        /* Collection Header */
+        .collection-header { padding: 4rem 0; text-align: center; }
+        .collection-header h1 { font-family: 'Fredoka', sans-serif; font-size: 3rem; margin-bottom: 1rem; }
+
+        @media (max-width: 768px) {
+            .product-detail-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+            .pd-title { font-size: 2rem; }
+            .nav-links { display: none; } /* Simplified mobile nav for this script */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container nav-wrapper">
+            <a href="/" class="nav-logo">Scribble Patch Designs</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/#products">All Products</a>
+                <a href="https://www.etsy.com/shop/ScribblePatchDesigns" target="_blank">Etsy Store</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="collection-header">
+        <div class="container">
+            <span style="text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 600;">Collection</span>
+            <h1>Kids Coloring Pages</h1>
+            <p>Explore our unique printable designs.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="product-grid">
+    <a href="/products/soccer-football-coloring-pages-printable-activity-book-pdf-instant-download-teen-kids-gift.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Soccer Football Coloring Pages | Printable Activity Book PDF | Instant Download Teen & Kids Gift</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="/products/unicorn-coloring-pages-printable-colouring-book-pdf-cute-fantasy-activity-for-kids-girls.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Unicorn Coloring Pages | Printable Colouring Book PDF | Cute Fantasy Activity for Kids & Girls</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="/products/golf-coloring-pages-pdf-printable-sports-activity-for-kids-adults-instant-download.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Golf Coloring Pages PDF – Printable Sports Activity for Kids & Adults – Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="/products/kawaii-coloring-pages-cute-animals-at-work-for-kids-and-teens-instant-download.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Kawaii Coloring Pages - Cute Animals at Work - For Kids and Teens - Instant Download</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    
+    <a href="/products/kawaii-coloring-pages-spooky-cats-printable-pdf-activity-for-kids-teens.html" class="product-card">
+        <img src="https://placehold.co/400?text=No+Image" alt="Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens" class="product-image" loading="lazy">
+        <div class="product-info">
+            <div class="product-title">Kawaii Coloring Pages: Spooky Cats, Printable PDF Activity for Kids & Teens</div>
+            <div class="product-footer">
+                <span class="buy-link">View Details →</span>
+            </div>
+        </div>
+    </a>
+    </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Scribble Patch Designs. Created with ♥ for the creative community.</p>
+        </div>
+    </footer>
+</body>
+</html>

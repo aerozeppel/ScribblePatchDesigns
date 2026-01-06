@@ -1,0 +1,63 @@
+{
+  "collections": {
+    "christmas": {
+      "name": "Christmas",
+      "slug": "christmas",
+      "productCount": 2,
+      "listingIds": [
+        "4403544038",
+        "4405553812"
+      ]
+    },
+    "sports": {
+      "name": "Sports",
+      "slug": "sports",
+      "productCount": 2,
+      "listingIds": [
+        "4414483304",
+        "4389399035"
+      ]
+    },
+    "kids": {
+      "name": "Kids",
+      "slug": "kids",
+      "productCount": 5,
+      "listingIds": [
+        "4414483304",
+        "4419208436",
+        "4389399035",
+        "4407864739",
+        "4392737821"
+      ]
+    },
+    "fantasy": {
+      "name": "Fantasy",
+      "slug": "fantasy",
+      "productCount": 1,
+      "listingIds": [
+        "4419208436"
+      ]
+    },
+    "kawaii": {
+      "name": "Kawaii",
+      "slug": "kawaii",
+      "productCount": 4,
+      "listingIds": [
+        "4419208436",
+        "4407864739",
+        "4405553812",
+        "4392737821"
+      ]
+    },
+    "animals": {
+      "name": "Animals",
+      "slug": "animals",
+      "productCount": 3,
+      "listingIds": [
+        "4407864739",
+        "4405553812",
+        "4392737821"
+      ]
+    }
+  }
+}
