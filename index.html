@@ -159,11 +159,11 @@
             padding-right: 24px;
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
+            scrollbar-width: none;
         }
 
         .product-carousel::-webkit-scrollbar {
-            display: none; /* Chrome, Safari */
+            display: none;
         }
 
         .carousel-item {
@@ -187,20 +187,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-        }
-
-        @media (max-width: 768px) {
-            .product-carousel {
-                margin: 0 -12px 1.5rem -12px;
-                padding-left: 12px;
-                padding-right: 12px;
-                gap: 0.5rem;
-            }
-
-            .carousel-item {
-                width: 150px;
-                height: 150px;
-            }
         }
 
         /* --- Intro Content Section --- */
@@ -418,14 +404,6 @@
             color: #718096;
         }
 
-        .loading-state { 
-            padding: 2rem; 
-            font-style: italic; 
-            color: #718096;
-            grid-column: 1 / -1;
-            text-align: center;
-        }
-
         @media (max-width: 768px) {
             .container {
                 padding: 0 12px; 
@@ -438,6 +416,18 @@
             
             .hero p {
                 font-size: 1rem;
+            }
+
+            .product-carousel {
+                margin: 0 -12px 1.5rem -12px;
+                padding-left: 12px;
+                padding-right: 12px;
+                gap: 0.5rem;
+            }
+
+            .carousel-item {
+                width: 150px;
+                height: 150px;
             }
 
             .intro-content {
@@ -502,8 +492,7 @@
             </div>
 
             <!-- Horizontal Scrolling Product Carousel -->
-            <div class="product-carousel" id="product-carousel">
-                <!-- Fallback content in case JS doesn't load -->
+            <div class="product-carousel">
                 <a href="https://scribblepatchdesigns.etsy.com/listing/4407864739" class="carousel-item" target="_blank" rel="noopener">
                     <img src="https://i.etsystatic.com/62598625/r/il/4d0508/7479002949/il_1588xN.7479002949_og49.jpg" alt="Kawaii Animals Coloring Pages">
                 </a>
@@ -512,6 +501,18 @@
                 </a>
                 <a href="https://scribblepatchdesigns.etsy.com/listing/4414483304" class="carousel-item" target="_blank" rel="noopener">
                     <img src="https://i.etsystatic.com/62598625/r/il/4c68e0/7454715958/il_1588xN.7454715958_alqp.jpg" alt="Soccer Coloring Pages">
+                </a>
+                <a href="https://scribblepatchdesigns.etsy.com/listing/4389399035" class="carousel-item" target="_blank" rel="noopener">
+                    <img src="https://i.etsystatic.com/62598625/r/il/67cc81/7478989653/il_1588xN.7478989653_rxuw.jpg" alt="Golf Coloring Pages">
+                </a>
+                <a href="https://scribblepatchdesigns.etsy.com/listing/4403544038" class="carousel-item" target="_blank" rel="noopener">
+                    <img src="https://i.etsystatic.com/62598625/r/il/5ec9dc/7447184638/il_1588xN.7447184638_4uel.jpg" alt="Christmas Elf Coloring Pages">
+                </a>
+                <a href="https://scribblepatchdesigns.etsy.com/listing/4419208436" class="carousel-item" target="_blank" rel="noopener">
+                    <img src="https://i.etsystatic.com/62598625/r/il/cdc4d7/7529055793/il_1588xN.7529055793_tp5s.jpg" alt="Unicorn Coloring Pages">
+                </a>
+                <a href="https://scribblepatchdesigns.etsy.com/listing/4392737821" class="carousel-item" target="_blank" rel="noopener">
+                    <img src="https://i.etsystatic.com/62598625/r/il/321434/7369431297/il_1588xN.7369431297_o4b6.jpg" alt="Spooky Cats Coloring Pages">
                 </a>
             </div>
 
@@ -532,8 +533,7 @@
 
             <h2 id="products" style="font-size: 1.75rem; margin-bottom: 1rem; font-weight: 600;">Our Coloring Page Collection</h2>
 
-            <div id="product-grid" class="product-grid">
-                <!-- All Products - Fully Crawlable by Search Engines -->
+            <div class="product-grid">
                 <a href="https://scribblepatchdesigns.etsy.com/listing/4403544038" class="product-card" target="_blank" rel="noopener">
                     <img src="https://i.etsystatic.com/62598625/r/il/5ec9dc/7447184638/il_1588xN.7447184638_4uel.jpg" alt="Christmas Coloring Pages - Elf on a Shelf printable activity book for kids - instant download PDF" class="product-image" loading="lazy">
                     <div class="product-info">
@@ -650,7 +650,29 @@
         </div>
     </footer>
 
+    <script>
+        // Shuffle carousel on page load
+        function shuffleCarousel() {
+            const carousel = document.querySelector('.product-carousel');
+            const items = Array.from(carousel.children);
+            
+            // Fisher-Yates shuffle
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [items[i], items[j]] = [items[j], items[i]];
+            }
+            
+            // Re-append in shuffled order
+            items.forEach(item => carousel.appendChild(item));
+        }
 
+        // Run on page load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', shuffleCarousel);
+        } else {
+            shuffleCarousel();
+        }
+    </script>
 
 </body>
 </html>
