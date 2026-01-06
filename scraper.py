@@ -6,7 +6,7 @@ from playwright.sync_api import sync_playwright
 
 def scrape_shop(shop_url):
     """
-    Enhanced scraper that extracts detailed product info for SEO-rich pages
+    Enhanced scraper that preserves description formatting
     """
     print(f"🚀 Starting enhanced product sync for: {shop_url}\n")
     
@@ -150,20 +150,58 @@ def scrape_shop(shop_url):
                 try:
                     # Visit the listing page
                     page.goto(product['fullUrl'], wait_until='domcontentloaded', timeout=30000)
-                    time.sleep(2)  # Let page fully load
+                    time.sleep(2.5)  # Give it time to fully load
                     
-                    # Extract detailed information
-                    details = page.evaluate("""
-                    () => {
+                    # Extract detailed information with BETTER formatting preservation
+                    details = page.evaluate("""() => {
                         const data = {};
                         
-                        // Full description
-                        const descEl = document.querySelector('[data-product-details-description-text-content], [data-id="description-text"], .wt-text-body-01.wt-break-word');
-                        data.description = descEl ? descEl.textContent.trim() : '';
+                        // IMPROVED DESCRIPTION EXTRACTION
+                        const descSelectors = [
+                            '[data-product-details-description-text-content]',
+                            '[data-id="description-text"]',
+                            '.wt-text-body-01.wt-break-word',
+                            '.product-description'
+                        ];
                         
-                        // All images (for gallery)
+                        let descElement = null;
+                        for (const selector of descSelectors) {
+                            descElement = document.querySelector(selector);
+                            if (descElement) break;
+                        }
+                        
+                        if (descElement) {
+                            let html = descElement.innerHTML;
+                            
+                            // Convert HTML to text with line breaks
+                            html = html.replace(/<br[^>]*>/gi, '\\n');
+                            html = html.replace(/<\\/p>/gi, '\\n\\n');
+                            html = html.replace(/<p[^>]*>/gi, '');
+                            html = html.replace(/<\\/div>/gi, '\\n');
+                            html = html.replace(/<div[^>]*>/gi, '');
+                            html = html.replace(/<\\/li>/gi, '\\n');
+                            html = html.replace(/<li[^>]*>/gi, '• ');
+                            html = html.replace(/<\\/h[1-6]>/gi, '\\n');
+                            html = html.replace(/<h[1-6][^>]*>/gi, '\\n');
+                            html = html.replace(/<[^>]+>/g, '');
+                            
+                            // Decode HTML entities
+                            const textarea = document.createElement('textarea');
+                            textarea.innerHTML = html;
+                            html = textarea.value;
+                            
+                            // Clean up whitespace
+                            html = html.replace(/\\n\\s*\\n\\s*\\n/g, '\\n\\n');
+                            html = html.replace(/[ \\t]+/g, ' ');
+                            
+                            data.description = html.trim();
+                        } else {
+                            data.description = '';
+                        }
+                        
+                        // All images
                         const images = [];
-                        document.querySelectorAll('img[data-listing-page-image], .listing-page-image img, img[src*="il_1588xN"]').forEach(img => {
+                        document.querySelectorAll('img[data-listing-page-image], .listing-page-image img').forEach(img => {
                             let src = img.getAttribute('data-src') || img.src;
                             if (src && src.includes('etsystatic')) {
                                 src = src.replace(/il_\\d+x\\d+/g, 'il_1588xN').replace(/il_\\d+xN/g, 'il_1588xN');
@@ -172,15 +210,15 @@ def scrape_shop(shop_url):
                         });
                         data.images = images;
                         
-                        // Tags/Categories
+                        // Tags
                         const tags = [];
-                        document.querySelectorAll('a[href*="/search?"], .wt-tag-group a').forEach(tag => {
+                        document.querySelectorAll('a[href*="/search?"]').forEach(tag => {
                             const text = tag.textContent.trim();
                             if (text && text.length < 30) tags.push(text);
                         });
                         data.tags = [...new Set(tags)];
                         
-                        // Item details (from the details section)
+                        // Item details
                         const details = {};
                         document.querySelectorAll('.wt-text-caption').forEach(el => {
                             const parent = el.closest('.wt-mb-xs-2');
@@ -194,35 +232,24 @@ def scrape_shop(shop_url):
                         });
                         data.details = details;
                         
-                        // Reviews count and rating
-                        const reviewEl = document.querySelector('[data-reviews-count-aria-label]');
-                        if (reviewEl) {
-                            const ratingText = reviewEl.textContent.trim();
-                            const ratingMatch = ratingText.match(/([\\d.]+) out of 5/);
-                            const countMatch = ratingText.match(/(\\d+) reviews?/);
-                            data.rating = ratingMatch ? parseFloat(ratingMatch[1]) : null;
-                            data.reviewCount = countMatch ? parseInt(countMatch[1]) : 0;
-                        }
-                        
-                        // Extract metadata from page
+                        // Metadata
                         const metaDesc = document.querySelector('meta[property="og:description"]');
                         data.metaDescription = metaDesc ? metaDesc.content : '';
                         
                         return data;
-                    }
-                    """)
+                    }""")
                     
                     # Merge with basic info
                     enhanced_product = {**product, **details}
                     
-                    # Generate URL-friendly slug from title
+                    # Generate URL-friendly slug
                     slug = re.sub(r'[^a-z0-9]+', '-', product['title'].lower()).strip('-')
                     enhanced_product['slug'] = slug
                     
-                    # Add share link with tracking
+                    # Add share link
                     enhanced_product['shareLink'] = f"https://scribblepatchdesigns.etsy.com/listing/{product['listingId']}?utm_source=scribblepatch&utm_medium=product_page&utm_campaign=direct"
                     
-                    # Auto-detect collections based on title/tags
+                    # Auto-detect collections
                     collections = []
                     title_lower = product['title'].lower()
                     tags_lower = ' '.join(details.get('tags', [])).lower()
@@ -245,23 +272,22 @@ def scrape_shop(shop_url):
                     
                     detailed_products.append(enhanced_product)
                     
-                    print(f"   ✓ Extracted {len(details.get('images', []))} images, "
-                          f"{len(details.get('tags', []))} tags, "
-                          f"{len(collections)} collections")
+                    # Show what we got
+                    desc_preview = enhanced_product.get('description', '')[:100]
+                    print(f"   ✓ Got description ({len(enhanced_product.get('description', ''))} chars)")
                     
                 except Exception as e:
                     print(f"   ⚠️  Error on this product: {e}")
-                    # Still add basic info even if detailed scrape fails
                     basic_copy = product.copy()
                     basic_copy['slug'] = re.sub(r'[^a-z0-9]+', '-', product['title'].lower()).strip('-')
                     basic_copy['shareLink'] = f"https://scribblepatchdesigns.etsy.com/listing/{product['listingId']}"
                     basic_copy['collections'] = []
+                    basic_copy['description'] = ''
                     detailed_products.append(basic_copy)
                 
-                # Be respectful with rate limiting
                 time.sleep(1.5)
             
-            # Save detailed product data
+            # Save data
             print("\n💾 Saving product data...")
             
             output_data = {
@@ -273,10 +299,10 @@ def scrape_shop(shop_url):
             with open('products_detailed.json', 'w', encoding='utf-8') as f:
                 json.dump(output_data, f, indent=2, ensure_ascii=False)
             
-            print(f"\n✅ SUCCESS: Scraped {len(detailed_products)} products with full details!")
+            print(f"\n✅ SUCCESS: Scraped {len(detailed_products)} products with formatted descriptions!")
             print(f"💾 Saved to: products_detailed.json")
             
-            # Generate collections summary
+            # Generate collections
             all_collections = {}
             for product in detailed_products:
                 for collection in product.get('collections', []):
@@ -288,7 +314,6 @@ def scrape_shop(shop_url):
             for collection, listings in sorted(all_collections.items()):
                 print(f"   • {collection.title()}: {len(listings)} products")
             
-            # Save collections data
             collections_data = {
                 'collections': {
                     name: {
@@ -309,14 +334,10 @@ def scrape_shop(shop_url):
             # Show sample
             if detailed_products:
                 sample = detailed_products[0]
-                print(f"\n📦 Sample Product Data:")
-                print(f"   Title: {sample['title']}")
-                print(f"   Slug: {sample['slug']}")
-                print(f"   Price: {sample.get('price', 'N/A')}")
-                print(f"   Images: {len(sample.get('images', []))} available")
-                print(f"   Description: {len(sample.get('description', ''))} chars")
-                print(f"   Tags: {', '.join(sample.get('tags', [])[:3])}")
-                print(f"   Collections: {', '.join(sample.get('collections', []))}")
+                print(f"\n📦 Sample Description Preview:")
+                desc = sample.get('description', '')[:300]
+                print(f"   {desc}...")
+                print(f"\n   Total description length: {len(sample.get('description', ''))} characters")
             
         except Exception as e:
             print(f"\n❌ Error: {e}")
@@ -335,14 +356,14 @@ def scrape_shop(shop_url):
 
 if __name__ == "__main__":
     print("=" * 70)
-    print("ScribblePatch Designs - Enhanced Product & SEO Data Scraper")
+    print("ScribblePatch Designs - Enhanced Product Scraper v2")
     print("=" * 70)
     print()
     print("ℹ️  This will:")
     print("   • Visit each product listing page")
-    print("   • Extract descriptions, images, tags, reviews")
-    print("   • Auto-detect collections (Kawaii, Christmas, Sports, etc.)")
-    print("   • Generate SEO-friendly data for product pages")
+    print("   • Extract descriptions WITH formatting preserved")
+    print("   • Get images, tags, reviews")
+    print("   • Auto-detect collections")
     print()
     print("⏱️  Takes ~2-3 minutes for 10 products")
     print()

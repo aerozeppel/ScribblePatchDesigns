@@ -30,14 +30,6 @@
         "4392737821"
       ]
     },
-    "fantasy": {
-      "name": "Fantasy",
-      "slug": "fantasy",
-      "productCount": 1,
-      "listingIds": [
-        "4419208436"
-      ]
-    },
     "kawaii": {
       "name": "Kawaii",
       "slug": "kawaii",
@@ -47,6 +39,14 @@
         "4407864739",
         "4405553812",
         "4392737821"
+      ]
+    },
+    "fantasy": {
+      "name": "Fantasy",
+      "slug": "fantasy",
+      "productCount": 1,
+      "listingIds": [
+        "4419208436"
       ]
     },
     "animals": {
